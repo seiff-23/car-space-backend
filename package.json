@@ -1,0 +1,25 @@
+{
+  "name": "carspace-back",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "back": "npx nodemon server.js",
+    "front": "cd ../carspace-front && npm run dev",
+    "dev": "concurrently \"npm run back\" \"npm run front\" "
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-validator": "^7.3.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.3",
+    "nodemon": "^3.1.10"
+  }
+}
