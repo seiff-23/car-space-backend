@@ -15,7 +15,7 @@ exports.test = async (req, res) => {
 // register controller
 exports.register = async (req, res) => {
     try {
-      const { email, password } = req.body;
+      const { firstName, lastName, phone, email, password } = req.body;
 
       const existingEmail = await User.findOne({ email });
 
@@ -25,7 +25,8 @@ exports.register = async (req, res) => {
           .send({ errors: [{ msg: "Email already exists" }] });
       }
 
-      const newUser = new User({ ...req.body });
+      // Administrator rights and metadata cannot be supplied at registration.
+      const newUser = new User({ firstName, lastName, phone, email, password });
 
       const salt = 10;
 
@@ -103,6 +104,6 @@ exports.login = async (req, res) => {
             token: token,
           });
     } catch (error) {
-        
+      res.status(500).send({ errors: [{ msg: "Unable to log in. Please try again." }] });
     }
 }
