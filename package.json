@@ -7,6 +7,8 @@
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js",
     "back": "npx nodemon server.js",
     "front": "cd ../carspace-front && npm run dev",
     "dev": "concurrently \"npm run back\" \"npm run front\" "

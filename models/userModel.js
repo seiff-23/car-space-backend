@@ -32,6 +32,15 @@ const userSchema = new Schema({
 }, { timestamps: true, collection: 'users' });
 
 
+// Keep the hash available for password verification, but never serialize it
+// in registration, login or current-user responses.
+userSchema.set('toJSON', {
+    transform: (_document, result) => {
+        delete result.password;
+        return result;
+    }
+});
+
 // export user model
 
-module.exports = User = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema);
